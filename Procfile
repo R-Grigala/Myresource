@@ -1,0 +1,1 @@
+web: gunicorm quizapp.wsgi --log-file-
