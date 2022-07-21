@@ -25,7 +25,7 @@ SECRET_KEY = '33&8bhvp=a58#5up-=1hwviug59nr!@l^3%h#(8gxc8+1oydv9'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['quizium-rg.herokuapp.com','127.0.0.1']
+ALLOWED_HOSTS = ['quickquiz-rg.herokuapp.com','127.0.0.1']
 
 
 # Application definition
