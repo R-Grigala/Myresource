@@ -1,21 +1,32 @@
-import './App.css';
-import Login from './Components/Login';
-import React, { useState } from 'react';
-// import Profile from './Components/Profile';
-import { LoginContext } from './Contexts/LoginContext'
-import MainRouter from './Router/MainRouter';
+import React, { } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Home from './containers/Home';
+import Login from './containers/Login';
+import Signup from './containers/Signup';
+import ResetPassword from './containers/ResetPassword';
+import Activate from './containers/Activate';
+import ResetPasswordConfirm from './containers/ResetPasswordConfirm';
 
-function App() {
-  const [showProfile, setShowProfile] = useState(false);
-  const [username, setUsername] = useState("");
+import { Provider } from 'react-redux';
+import store from './store';
 
-  return (
-    <>
-      <LoginContext.Provider value={{username, setUsername, setShowProfile}}>
-        {showProfile ? <MainRouter/> : <Login />}
-      </LoginContext.Provider>
-    </>
-  );
-}
+import Layout from './hocs/Layout';
+
+const App = () => (
+  <Provider store={store}>
+    <BrowserRouter>
+      <Layout>
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route exact path="/login" element={<Login />} />
+          <Route exact path="/signup" element={<Signup />} />
+          <Route exact path="/reset-password" element={<ResetPassword />} />
+          <Route exact path="/password/rest/confirm/:uid/:token" element={<ResetPasswordConfirm />} />
+          <Route exact path="/activate/:uid/:token" element={<Activate />} />
+        </Routes>
+      </Layout>
+    </BrowserRouter>
+  </Provider>
+)
 
 export default App;
