@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import '../styles/style.css'
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { login } from '../actions/auth';
 
-const Login = () => {
+const Login = ({ login }) => {
     const [formData, setFormData] = useState({
         email: '',
         password: '',
@@ -13,16 +14,17 @@ const Login = () => {
     const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
     const onSubmit = e => {
         e.preventDefault();
+        login(email, password)
     };
 
     return (
         <>
             <div className='login template d-flex justify-content-center align-items-center vh-100 bg-primary'>
                 <div className='form_container p-5 rounded bg-white'>
-                    <form>
+                    <form onSubmit={e => onSubmit(e)}>
                         <h3>ავტორიზაცია</h3>
-                        <div class="mb-3 mt-3">
-                            <label for="email" class="form-label">ელ-ფოსტა:</label>
+                        <div className="mb-3 mt-3">
+                            <label htmlFor="email" className="form-label">ელ-ფოსტა:</label>
                             <input 
                                 className='form-control'
                                 type='email'
@@ -33,8 +35,8 @@ const Login = () => {
                                 required
                             />
                         </div>
-                        <div class="mb-3">
-                            <label for="pwd" class="form-label">პაროლი:</label>
+                        <div className="mb-3">
+                            <label htmlFor="pwd" className="form-label">პაროლი:</label>
                             <input 
                                 className='form-control'
                                 type='password'
@@ -46,14 +48,14 @@ const Login = () => {
                                 required
                             />
                         </div>
-                        <div class="form-check mb-3">
+                        <div className="form-check mb-3">
                             <input type='checkbox' className='custom-control custom-checkbox' id='check'/>
                             <label htmlFor='check' className='custom-input-label ms-2'>
                                 დამახსოვრება
                             </label>
                         </div>
                         <div className='d-grid'>
-                            <button type="submit" class="btn btn-primary">შესვლა</button>
+                            <button type="submit" className="btn btn-primary">შესვლა</button>
                         </div>
                         <div className='p-2'>
                             <p className='text-end mt-2'>
@@ -73,4 +75,4 @@ const mapStateToProps = state => ({
     // is authenticated?
 })
 
-export default connect(null, { })(Login);
+export default connect(null, { login })(Login);
