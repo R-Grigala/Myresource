@@ -1,19 +1,20 @@
 import './App.css';
 import Login from './Components/Login';
 import React, { useState } from 'react';
-import Profile from './Components/Profile';
+// import Profile from './Components/Profile';
 import { LoginContext } from './Contexts/LoginContext'
+import MainRouter from './Router/MainRouter';
 
 function App() {
   const [showProfile, setShowProfile] = useState(false);
   const [username, setUsername] = useState("");
 
   return (
-    <div className="App">
+    <>
       <LoginContext.Provider value={{username, setUsername, setShowProfile}}>
-        {showProfile ? <Profile/> : <Login />}
+        {showProfile ? <MainRouter/> : <Login />}
       </LoginContext.Provider>
-    </div>
+    </>
   );
 }
 
