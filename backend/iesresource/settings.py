@@ -68,7 +68,9 @@ ROOT_URLCONF = 'iesresource.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'build')],
+        'DIRS': [
+            BASE_DIR / 'build'
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -99,7 +101,7 @@ DATABASES = {
 # email account: kheveligrigala@gmail.com
 # app password: tjrm pebd scww mrwf 
 
-EMAIL_BACKEND = 'django.core.mail.backend.smtp.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'kheveligrigala@gmail.com'
@@ -141,13 +143,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_DIRS = [
-    os.path.join(BASE_DIR, 'build/static')
+STATIC_DIR = BASE_DIR /'static'
+STATIC_ROOT = BASE_DIR /'staticfiles'
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'build/static'
 ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
 REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated'
+    ],
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
