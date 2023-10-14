@@ -1,33 +1,51 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom';
 import logo from '../assets/brand/bootstrap-logo.svg';
+import { connect } from 'react-redux';
+import { logout } from '../actions/auth';
 
-const Navbar = () => (
-    <div>
-        <nav className="navbar navbar-expand-lg bg-body-tertiary">
-            <div className="container-fluid px-3">
-                <Link className="navbar-brand" to="/">
-                    <img src={logo} alt="Logo" width="30" height="24" className="d-inline-block align-text-top mx-2" />
-                        GNSMC
-                </Link>
-            </div>
-            
-            <div className="collapse navbar-collapse" id="navbarNav">
-                <ul className="navbar-nav px-5">
-                    <li className="nav-item">
-                        <Link className="nav-link active" aria-current="page" to="/">Home</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/signup">About</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/">Pricing</Link>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </div>
+const Navbar = ({ logout, isAuthenticated }) => {
+    const guestLinks = () => (
+        <Fragment>
+            <li className="nav-item">
+                <Link className="nav-link" to="/login">Login</Link>
+            </li>
+            <li className="nav-item">
+                <Link className="nav-link" to="/signup">Signup</Link>
+            </li>
+        </Fragment>
+    );
 
-);
+    const authLinks = () => (
+        <li className="nav-item">
+            <a className="nav-link" href="#!" onClick={logout}>Logout</a>
+        </li>
+    );
 
-export default Navbar;
+    return(
+        <>
+            <nav className="navbar navbar-expand-lg bg-body-tertiary">
+                <div className="container-fluid px-3">
+                    <Link className="navbar-brand" to="/">
+                        <img src={logo} alt="Logo" width="30" height="24" className="d-inline-block align-text-top mx-2" />
+                            GNSMC
+                    </Link>
+                </div>
+                
+                <div className="collapse navbar-collapse" id="navbarNav">
+                    <ul className="navbar-nav px-5">
+                        <li className="nav-item">
+                            <Link className="nav-link active" aria-current="page" to="/">Home</Link>
+                        </li>
+                        {isAuthenticated ? authLinks() : guestLinks()}
+                    </ul>
+                </div>
+            </nav>
+        </>
+)};
+
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated
+})
+
+export default connect(mapStateToProps, {logout} ) (Navbar);
