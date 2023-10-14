@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import '../styles/style.css'
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { login } from '../actions/auth';
 
-const Login = ({ login }) => {
+const Login = ({ login, isAuthenticated }) => {
     const [formData, setFormData] = useState({
         email: '',
         password: '',
@@ -14,8 +14,13 @@ const Login = ({ login }) => {
     const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
     const onSubmit = e => {
         e.preventDefault();
-        login(email, password)
+        login(email, password);
     };
+
+    if (isAuthenticated) {
+        return <Navigate to='/' />    
+    }
+    
 
     return (
         <>
@@ -72,7 +77,7 @@ const Login = ({ login }) => {
 };
 
 const mapStateToProps = state => ({
-    // is authenticated?
-})
+    isAuthenticated: state.auth.isAuthenticated
+});
 
-export default connect(null, { login })(Login);
+export default connect(mapStateToProps, { login })(Login);
