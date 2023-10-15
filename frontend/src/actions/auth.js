@@ -123,8 +123,7 @@ export const signup = (name, email,  password, re_password) => async dispatch =>
             type: SIGNUP_SUCCESS,
             payload: res.data
         });
-
-        dispatch(load_user());
+        
     } catch (err){
         dispatch({
             type: SIGNUP_FAIL

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { signup } from '../actions/auth';
 
 const Signup = ({ signup, isAuthenticated }) => {
-    const [accountCreated, setAccountCreated] = useState(false)
+    const [accountCreated, setAccountCreated] = useState(false);
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -44,7 +44,7 @@ const Signup = ({ signup, isAuthenticated }) => {
                             <input 
                                 className='form-control'
                                 type='text'
-                                placeholder='Username'
+                                placeholder='Username*'
                                 name='name'
                                 value={name}
                                 onChange={e => onChange(e)}
@@ -56,7 +56,7 @@ const Signup = ({ signup, isAuthenticated }) => {
                             <input 
                                 className='form-control'
                                 type='email'
-                                placeholder='Email'
+                                placeholder='Email*'
                                 name='email'
                                 value={email}
                                 onChange={e => onChange(e)}
@@ -68,7 +68,7 @@ const Signup = ({ signup, isAuthenticated }) => {
                             <input 
                                 className='form-control'
                                 type='password'
-                                placeholder='Password'
+                                placeholder='Password*'
                                 name='password'
                                 value={password}
                                 onChange={e => onChange(e)}
@@ -81,7 +81,7 @@ const Signup = ({ signup, isAuthenticated }) => {
                             <input 
                                 className='form-control'
                                 type='password'
-                                placeholder='Confirm Password'
+                                placeholder='Confirm Password*'
                                 name='re_password'
                                 value={re_password}
                                 onChange={e => onChange(e)}
