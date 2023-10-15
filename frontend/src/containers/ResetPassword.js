@@ -21,7 +21,7 @@ const ResetPassword = ({ reset_password }) => {
     };
 
     if (requestSent) {
-        return <Navigate to='/login' />    
+        return <Navigate to='/reset-password' />    
     }
     
 

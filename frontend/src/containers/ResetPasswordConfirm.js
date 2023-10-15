@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/style.css'
-import { Link, Navigate, useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { reset_password_confirm } from '../actions/auth';
 
@@ -61,11 +61,6 @@ const ResetPasswordConfirm = ({ reset_password_confirm }) => {
                         </div>
                         <div className='d-grid'>
                             <button type="submit" className="btn btn-primary">შეცვლა</button>
-                        </div>
-                        <div className='p-2'>
-                            <p className='text-end mt-2'>
-                                <Link to='/login'>ავტორიზაცია</Link>
-                            </p>
                         </div>
                     </form> 
                 </div>
