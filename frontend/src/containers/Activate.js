@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/style.css'
-import { Link, Navigate, useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { verify } from '../actions/auth';
 
