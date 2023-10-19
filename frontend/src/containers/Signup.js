@@ -3,26 +3,39 @@ import '../styles/style.css'
 import { Link, Navigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { signup } from '../actions/auth';
+import axios from 'axios';
 
 const Signup = ({ signup, isAuthenticated }) => {
     const [accountCreated, setAccountCreated] = useState(false);
     const [formData, setFormData] = useState({
-        name: '',
+        first_name: '',
+        last_name: '',
         email: '',
         password: '',
         re_password: ''
     });
-    const { name, email, password, re_password} = formData;
+    const { first_name, last_name, email, password, re_password} = formData;
 
     const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
     const onSubmit = e => {
         e.preventDefault();
 
         if (password === re_password) {
-            signup(name, email, password, re_password);
+            signup(first_name, last_name, email, password, re_password);
             setAccountCreated(true);
         }
         
+    };
+
+    const continueWithGoogle = async () => {
+        try {
+            const res = await axios.get(`${process.env.REACT_APP_API_URL}/auth/o/google-oauth2/?redirect_uri=${process.env.REACT_APP_API_URL}/google`)
+            
+            window.location.replace(res.data.authorization_url);
+            
+        } catch (err) {
+
+        }
     };
 
     if (isAuthenticated) {
@@ -44,9 +57,21 @@ const Signup = ({ signup, isAuthenticated }) => {
                             <input 
                                 className='form-control'
                                 type='text'
-                                placeholder='Username*'
+                                placeholder='First Name*'
                                 name='name'
-                                value={name}
+                                value={first_name}
+                                onChange={e => onChange(e)}
+                                required
+                            />
+                        </div>
+                        <div className="mb-3 mt-3">
+                            <label htmlFor="text" className="form-label">მომხმარებლის გვარი:</label>
+                            <input 
+                                className='form-control'
+                                type='text'
+                                placeholder='Last Name*'
+                                name='name'
+                                value={last_name}
                                 onChange={e => onChange(e)}
                                 required
                             />
@@ -91,6 +116,14 @@ const Signup = ({ signup, isAuthenticated }) => {
                         </div>
                         <div className='d-grid'>
                             <button type="submit" className="btn btn-primary">რეგისტრაცია</button>
+                        </div>
+                        <div className='mt-2 d-flex justify-content-center align-items-center'>
+                            <p>ან</p>
+                        </div>
+                        <div className='d-flex justify-content-center align-items-center'>
+                            <button className='btn btn-danger mt-3' onClick={continueWithGoogle}>
+                                რეგისტრაცია Google -ის საშუალებით
+                            </button>
                         </div>
                         <div className='p-2'>
                             <p className='text-end mt-2'>

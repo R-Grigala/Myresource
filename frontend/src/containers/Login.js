@@ -84,7 +84,7 @@ const Login = ({ login, isAuthenticated }) => {
                         </div>
                         <div className='d-flex justify-content-center align-items-center'>
                             <button className='btn btn-danger mt-3' onClick={continueWithGoogle}>
-                                Continue With Google
+                                ავტორიზაცია Google -ის საშუალებით 
                             </button>
                         </div>
                     </form> 
