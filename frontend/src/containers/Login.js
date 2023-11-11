@@ -4,8 +4,11 @@ import { Link, Navigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { login } from '../actions/auth';
 import axios from 'axios';
+import usePasswordToggle from '../hooks/usePasswordToggle';
 
 const Login = ({ login, isAuthenticated }) => {
+    const [PasswordInputType, ToggleIcon] = usePasswordToggle();
+
     const [formData, setFormData] = useState({
         email: '',
         password: '',
@@ -39,7 +42,9 @@ const Login = ({ login, isAuthenticated }) => {
             <div className='login template d-flex justify-content-center align-items-center vh-100 bg-primary'>
                 <div className='form_container p-5 rounded bg-white'>
                     <form onSubmit={e => onSubmit(e)}>
-                        <h3>ავტორიზაცია</h3>
+                        <div className='d-flex justify-content-center align-items-center'>
+                            <h3>ავტორიზაცია</h3>
+                        </div>
                         <div className="mb-3 mt-3">
                             <label htmlFor="email" className="form-label">ელ-ფოსტა:</label>
                             <input 
@@ -54,18 +59,23 @@ const Login = ({ login, isAuthenticated }) => {
                         </div>
                         <div className="mb-3">
                             <label htmlFor="pwd" className="form-label">პაროლი:</label>
-                            <input 
-                                className='form-control'
-                                type='password'
-                                placeholder='Password'
-                                name='password'
-                                value={password}
-                                onChange={e => onChange(e)}
-                                minLength='6'
-                                required
-                            />
+                            <div className="d-flex position-relative">
+                                <input 
+                                    className='form-control'
+                                    type={PasswordInputType}
+                                    placeholder='Password'
+                                    name='password'
+                                    value={password}
+                                    onChange={e => onChange(e)}
+                                    minLength='6'
+                                    required
+                                />
+                                <span style={{position:'absolute', right:'1rem', top: '0.3rem'}}>
+                                    {ToggleIcon}
+                                </span>  
+                            </div>
                         </div>
-                        <div className="form-check mb-3">
+                        <div className="mb-3">
                             <input type='checkbox' className='custom-control custom-checkbox' id='check'/>
                             <label htmlFor='check' className='custom-input-label ms-2'>
                                 დამახსოვრება

@@ -30,7 +30,10 @@ const ResetPassword = ({ reset_password }) => {
             <div className='login template d-flex justify-content-center align-items-center vh-100 bg-primary'>
                 <div className='form_container p-5 rounded bg-white'>
                     <form onSubmit={e => onSubmit(e)}>
-                        <h3>პაროლის შეცვლა</h3>
+                        <div className='d-flex justify-content-center align-items-center'> 
+                            <h3>პაროლის აღდგენა</h3>
+                        </div>
+                        
                         <div className="mb-3 mt-3">
                             <label htmlFor="email" className="form-label">ელ-ფოსტა:</label>
                             <input 

@@ -4,8 +4,10 @@ import { Link, Navigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { signup } from '../actions/auth';
 import axios from 'axios';
+import usePasswordToggle from '../hooks/usePasswordToggle';
 
 const Signup = ({ signup, isAuthenticated }) => {
+    const [PasswordInputType, ToggleIcon] = usePasswordToggle();
     const [accountCreated, setAccountCreated] = useState(false);
     const [formData, setFormData] = useState({
         first_name: '',
@@ -51,7 +53,9 @@ const Signup = ({ signup, isAuthenticated }) => {
             <div className='login template d-flex justify-content-center align-items-center vh-100 bg-primary'>
                 <div className='form_container p-5 rounded bg-white'>
                     <form onSubmit={e => onSubmit(e)}>
-                        <h3>რეგისტრაცია</h3>
+                        <div className='d-flex justify-content-center align-items-center'>
+                            <h3>რეგისტრაცია</h3>
+                        </div>
                         <div className="mb-3 mt-3">
                             <label htmlFor="text" className="form-label">მომხმარებლის სახელი:</label>
                             <input 
@@ -90,22 +94,28 @@ const Signup = ({ signup, isAuthenticated }) => {
                         </div>
                         <div className="mb-3">
                             <label htmlFor="pwd" className="form-label">პაროლი:</label>
-                            <input 
-                                className='form-control'
-                                type='password'
-                                placeholder='Password*'
-                                name='password'
-                                value={password}
-                                onChange={e => onChange(e)}
-                                minLength='6'
-                                required
+                            <div className="d-flex position-relative">
+                                <input 
+                                    className='form-control'
+                                    type={PasswordInputType}
+                                    placeholder='Password*'
+                                    name='password'
+                                    value={password}
+                                    onChange={e => onChange(e)}
+                                    minLength='6'
+                                    required
                             />
+                            <span style={{position:'absolute', right:'1rem', top: '0.3rem'}}>
+                                {ToggleIcon}
+                            </span> 
+                            </div>
+ 
                         </div>
                         <div className="mb-3">
                             <label htmlFor="pwd" className="form-label">გაიმეორეთ პაროლი:</label>
                             <input 
-                                className='form-control'
-                                type='password'
+                                className='form-control position-relative'
+                                type={PasswordInputType}
                                 placeholder='Confirm Password*'
                                 name='re_password'
                                 value={re_password}
