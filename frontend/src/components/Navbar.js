@@ -9,7 +9,7 @@ const Navbar = ({ logout, isAuthenticated }) => {
 
     const logout_user = () => {
         logout();
-        setRedirect(true);
+        setRedirect(false);
     };
 
     const guestLinks = () => (
@@ -25,7 +25,7 @@ const Navbar = ({ logout, isAuthenticated }) => {
 
     const authLinks = () => (
         <li className="nav-item">
-            <a className="nav-link" href="#!" onClick={logout}>Logout</a>
+            <a className="nav-link" href="#!" onClick={logout_user}>Logout</a>
         </li>
     );
 
