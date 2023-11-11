@@ -93,7 +93,7 @@ const Signup = ({ signup, isAuthenticated }) => {
                             />
                         </div>
                         <div className="mb-3">
-                            <label htmlFor="pwd" className="form-label">პაროლი:</label>
+                            <label htmlFor="password" className="form-label">პაროლი:</label>
                             <div className="d-flex position-relative">
                                 <input 
                                     className='form-control'
