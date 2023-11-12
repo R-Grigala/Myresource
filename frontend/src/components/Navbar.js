@@ -6,6 +6,11 @@ import { logout } from '../actions/auth';
 
 const Navbar = ({ logout, isAuthenticated }) => {
     const [redirect, setRedirect] = useState(false);
+    const [showSidebar, setShowSidebar] = useState(false);
+
+    function toggleSidebar(){
+        setShowSidebar(!showSidebar);
+    }
 
     const logout_user = () => {
         logout();
@@ -14,10 +19,10 @@ const Navbar = ({ logout, isAuthenticated }) => {
 
     const guestLinks = () => (
         <Fragment>
-            <li className="nav-item">
-                <Link className="nav-link" to="/login">Login</Link>
+            <li className="nav-item mx-2">
+                <Link className="nav-link nav-link-light" to="/login">Login</Link>
             </li>
-            <li className="nav-item">
+            <li className="nav-item mx-2">
                 <Link className="nav-link" to="/signup">Signup</Link>
             </li>
         </Fragment>
@@ -38,15 +43,31 @@ const Navbar = ({ logout, isAuthenticated }) => {
                             <img src={logo} alt="Logo" width="30" height="24" className="d-inline-block align-text-top mx-2" />
                                 GNSMC
                         </Link>
-                    </div>
                     
-                    <div className="collapse navbar-collapse" id="navbarNav">
-                        <ul className="navbar-nav px-5">
-                            <li className="nav-item">
-                                <Link className="nav-link active" aria-current="page" to="/">Home</Link>
-                            </li>
-                            {isAuthenticated ? authLinks() : guestLinks()}
-                        </ul>
+                        {/* toggle button */}
+                        <button className='navbar-toggler shadow-none border-0' type='button' onClick={toggleSidebar}>
+                            <span className='navbar-toggler-icon'></span>
+                        </button>
+
+                        {/* sidebar */}
+                        <div className={`sidebar offcanvas offcanvas-start ${showSidebar ? 'show': ''}`} tabIndex='-1' id='offcanvasNavbar' aria-labelledby='offcanvasNavbarLabel' style={{backgroundColor:'rgba(255, 255, 255, 0.1)', backdropFilter:'blur(10px)'}}>
+                            <div className='offcanvas-header border-bottom'>
+                                <Link className='nav-link' aria-current="page" to='/'>GNSMC</Link>
+                                <button className='btn-close btn-close shadow-none' onClick={toggleSidebar} aria-label='Close'></button>
+                            </div>
+                            {/* navbar links */}
+                            <div className='offcanvas-body d-flex flex-column flex-lg-row p-4'>
+                                <ul className='navbar-nav justify-content-center align-items-center fs-5 flex-grow-1 pe-3'>
+                                    <li className='nav-item mx-2'>
+                                        <Link className='nav-link' aria-current="page" to='/'>Home</Link>
+                                    </li>
+                                    <li className='nav-item mx-2'>
+                                        <Link className='nav-link' aria-current="page" to='/'>About</Link>
+                                    </li>
+                                    {isAuthenticated ? authLinks() : guestLinks()}
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </nav>
                 {redirect ? <Navigate to='/' /> : <Fragment></Fragment>}
