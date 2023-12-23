@@ -21,8 +21,8 @@ const Google = ({ googleAuthenticate }) => {
     }, [location]);
 
     return (
-        <div className='container'>
-            <div class='jumbotron mt-5'>
+        <div className='home_container'>
+            <div class='home_content p-5 rounded bg-white'>
                 <h1 class='display-4'>Welcome to Auth System!</h1>
                 <p class='lead'>This is an incredible authentication system with production level features!</p>
                 <hr class='my-4' />
