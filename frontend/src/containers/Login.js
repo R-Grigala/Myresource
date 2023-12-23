@@ -37,7 +37,7 @@ const Login = ({ login, isAuthenticated }) => {
     }
 
     return (
-        <div className='login template d-flex justify-content-center align-items-center vh-100 bg-primary'>
+        <div className='login_signup'>
             <div className='form_container p-5 rounded bg-white'>
                 <form onSubmit={onSubmit}>
                     <div className='d-flex justify-content-center align-items-center'>

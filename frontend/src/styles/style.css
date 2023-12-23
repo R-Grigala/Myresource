@@ -2,6 +2,23 @@
     width: 30%;
     height: auto;
 }
+.login_signup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1.5rem;
+}
+.home_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1.5rem;
+}
+.home_content{
+    width: 95%;
+    height: auto;
+    
+}
 
 @media screen and (max-width: 1000px) {
     .form_container {
@@ -14,5 +31,10 @@
     .form_container {
         width: 90%;
         height: auto;
+    }
+    .home_content{
+        width: 95%;
+        height: auto;
+        padding: 0;
     }
 }

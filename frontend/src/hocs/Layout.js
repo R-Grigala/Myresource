@@ -10,7 +10,7 @@ const Layout = ({ checkAuthenticated, load_user, children }) => {
     }, []);
 
     return (
-        <div>
+        <div className='vh-100 bg-primary'>
             <Navbar />
             {children}
         </div>
