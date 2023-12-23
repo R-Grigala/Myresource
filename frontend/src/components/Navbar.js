@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react'
 import { Link, Navigate } from 'react-router-dom';
-import logo from '../assets/brand/bootstrap-logo.svg';
+import logo from '../assets/brand/OfDigital_logo.png';
 import { connect } from 'react-redux';
 import { logout } from '../actions/auth';
 
@@ -40,8 +40,8 @@ const Navbar = ({ logout, isAuthenticated }) => {
                 <nav className="navbar navbar-expand-lg bg-body-tertiary">
                     <div className="container-fluid px-3">
                         <Link className="navbar-brand" to="/">
-                            <img src={logo} alt="Logo" width="30" height="24" className="d-inline-block align-text-top mx-2" />
-                                GNSMC
+                            <img src={logo} alt="Logo" width="40" height="40" className="d-inline-block align-text-center mx-2" />
+                                OfDigital
                         </Link>
                     
                         {/* toggle button */}
