@@ -47,7 +47,7 @@ THIRD_PARTY_APPS = [
 "rest_framework",
 # "drf_yasg",
 "djoser",
-# "corsheaders",
+"corsheaders",
 "social_django",
 "rest_framework_simplejwt",
 "rest_framework_simplejwt.token_blacklist",
@@ -59,6 +59,7 @@ MIDDLEWARE = [
     'social_django.middleware.SocialAuthExceptionMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -101,6 +102,9 @@ DATABASES = {
     }
 }
 
+CORS_ALLOWED_ORIGINS = [
+    'https://127.0.0.1:8000',
+]
 
 # Email
 # email account: kheveligrigala@gmail.com
